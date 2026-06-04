@@ -18,7 +18,7 @@ Ein eigener Punkt ist das Schlüssel-Verzeichnis. PQXDH-Handshakes sind teuer, M
 
 Die WebSocket-Knoten halten die Verbindungen und sind austauschbar. Eine eingehende Nachricht findet über Queue und Backplane den Knoten mit der Zielverbindung. Offline-Geräte weckt Push, die Sendung wartet im Store-and-forward bis zur Abholung.
 
-## Push, ehrlich gesagt
+## Push
 
 Push weckt nur, der Inhalt kommt per Pull. Trotzdem sehen APNs und FCM den Geräte-Token und das Timing jeder Benachrichtigung (siehe [sicherheit.md](sicherheit.md)). Mildern lässt sich das mit gebündelten oder verzögerten Pushes und einem generischen "du hast Neues" statt einer Meldung pro Nachricht. Ganz wegbekommen kann man es bei einer mobilen App nicht.
 
