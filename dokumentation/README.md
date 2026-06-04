@@ -7,8 +7,8 @@ Diese Doku ist eine Übersicht plus die paar Specs, an denen so ein System wirkl
 ## Die Grundentscheidungen
 
 1. Krypto aus geprüften Bibliotheken, über einen gemeinsamen Rust-Core. libsignal für PQXDH und den Double Ratchet, OpenMLS für Gruppen. Einmal geschrieben, über alle Clients geteilt (WASM im Web, FFI nativ). Keine Eigenkrypto. Begründung in [ADR-0005](entscheidungen/0005-krypto-bibliotheken.md).
-2. Zentraler Kern, der sich den Weg zu Föderation nicht verbaut. Erstmal ein Betreiber, das schützt Metadaten am besten. Föderation ist später möglich, aber kein Schalter, sondern eine andere Vertrauenstopologie. Die ehrliche Abwägung steht in [ADR-0001](entscheidungen/0001-hybrid-kern.md).
-3. Echte Multi-Plattform, native Clients von Anfang an parallel. Wer mit dem Web-Client allein startet, zementiert den schwächsten Client als Default. Das machen wir nicht.
+2. Zentraler Kern, der sich den Weg zu Föderation nicht verbaut. Erstmal ein Betreiber, das schützt Metadaten am besten. Föderation ist später möglich, aber kein Schalter, sondern eine andere Vertrauenstopologie. Die Abwägung steht in [ADR-0001](entscheidungen/0001-hybrid-kern.md).
+3. Multi-Plattform, native Clients von Anfang an parallel. Wer mit dem Web-Client allein startet, zementiert den schwächsten Client als Default. Das machen wir nicht.
 4. Identität über Username, ohne Telefonnummer. Kontakte über Handles, die Echtheit der Schlüssel sichert Key Transparency.
 
 ## Was die Plattform kann
