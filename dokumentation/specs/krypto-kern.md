@@ -26,15 +26,15 @@ Die laufende 1:1-Sitzung fährt den Double Ratchet. Der Nachrichtenschlüssel zi
 
 ## MLS-Cipher-Suite
 
-OpenMLS bringt mehrere Suites mit. Als klassische Basis setzen wir auf:
+OpenMLS bringt mehrere Suites mit. Wir nehmen die ChaCha20-Variante:
 
 ```
-MLS_128_DHKEMX25519_AES128GCM_SHA256_Ed25519   (Suite 0x0001)
+MLS_128_DHKEMX25519_CHACHA20POLY1305_SHA256_Ed25519   (Suite 0x0003)
 ```
 
-Das ist eine breit unterstützte RFC-9420-Suite. Die ChaCha20-Variante ist eine Alternative, falls wir den symmetrischen Teil über alles vereinheitlichen wollen, das steht in den offenen Punkten.
+Damit ist der symmetrische Teil über die ganze Plattform einheitlich (ChaCha20-Poly1305 auch sonst), und es läuft auch auf Geräten ohne AES-Hardware schnell. Die AES-128-GCM-Suite (0x0001) wäre die interop-stärkere Wahl, bei einem Betreiber wiegt das aber wenig.
 
-Ehrlich und wichtig: Diese Suite ist klassisch. Gruppen sind damit nicht post-quantum. Ein PQ-Pfad für MLS existiert nur als IETF-Draft (der Combiner, `draft-ietf-mls-combiner`, der einen klassischen und einen PQ-KEM in TreeKEM kombiniert). Sobald das stabil ist und in OpenMLS landet, ziehen wir nach. Bis dahin gilt für Gruppen: Forward Secrecy und Post-Compromise Security ja, Post-Quantum nein.
+Wichtig: Diese Suite ist klassisch. Gruppen sind damit nicht post-quantum. Ein PQ-Pfad für MLS existiert nur als IETF-Draft (der Combiner, `draft-ietf-mls-combiner`, der einen klassischen und einen PQ-KEM in TreeKEM kombiniert). Sobald das stabil ist und in OpenMLS landet, ziehen wir nach. Bis dahin gilt für Gruppen: Forward Secrecy und Post-Compromise Security ja, Post-Quantum nein.
 
 ## Krypto-Agilität und Wire-Versionierung
 
@@ -53,7 +53,6 @@ Schlüssel und Nonces kommen ausschließlich aus dem CSPRNG der Bibliothek. Nonc
 
 ## Offen
 
-- AES-GCM gegen ChaCha20-Poly1305 als MLS-Suite, also Standard-Kompatibilität gegen einheitlichen symmetrischen Stack.
 - Zeitpunkt für PQ-MLS, abhängig vom Combiner-Draft und der OpenMLS-Unterstützung.
 - Genaues Wire-Format der Versionsaushandlung und der Suite-IDs.
 - Stichtags-Mechanik für erzwungene Re-Handshakes.

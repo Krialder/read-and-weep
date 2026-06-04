@@ -42,4 +42,4 @@ Frisch aus der Planung. Die Architektur steht, die kritischen Specs (Key Transpa
 
 - Gruppen sind aktuell nicht post-quantum. MLS nach RFC 9420 ist in den Standard-Suites klassisch, PQ-MLS läuft noch über einen IETF-Draft. 1:1 ist über PQXDH schon post-quantum.
 - Backup und Wiederherstellung sind nur grob skizziert. Ohne eine ordentliche Lösung verlieren reale Nutzer ihre History. Das ist offen.
-- Ein externes Sicherheitsaudit hat nicht stattgefunden und muss vor jedem echten Einsatz her, mindestens zweimal.
+- Ein externes Sicherheitsaudit hat nicht stattgefunden und muss vor jedem Produktiveinsatz her, mindestens zweimal.

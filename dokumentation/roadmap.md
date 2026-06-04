@@ -56,6 +56,6 @@ Sortiert nach Abhängigkeiten, ohne Termine. Zwei Aspekte, auf die bei der Planu
 
 - Föderation: serverübergreifende Key Transparency, Server-Discovery, S2S-Auth
 - Multi-Region für Latenz und Ausfallsicherheit
-- Secure Value Recovery für Backups, falls so entschieden
+- Secure Value Recovery für Backups (entschieden, kommt nach dem Fundament)
 - Client-seitige Suche über den lokalen, entschlüsselten Verlauf
 - FIDO2 als phishing-resistenter Login-Faktor

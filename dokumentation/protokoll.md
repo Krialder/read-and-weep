@@ -1,6 +1,6 @@
 # Protokoll und Kryptografie
 
-Hier steht, wie aus "der Server sieht nichts" echte Technik wird, im Überblick. Die Details, an denen es wirklich hängt (die Hybrid-Bindung bei PQXDH, die Cipher Suite bei MLS, die Versionierung), stehen in [specs/krypto-kern.md](specs/krypto-kern.md). Eine Regel vorweg: Nichts davon ist selbst gebaut. Die Krypto kommt aus libsignal (PQXDH, Double Ratchet) und OpenMLS (Gruppen), beide als geprüfter Rust-Code, geteilt über alle Clients.
+Hier steht, wie aus "der Server sieht nichts" konkrete Technik wird, im Überblick. Die Details, an denen es wirklich hängt (die Hybrid-Bindung bei PQXDH, die Cipher Suite bei MLS, die Versionierung), stehen in [specs/krypto-kern.md](specs/krypto-kern.md). Eine Regel vorweg: Nichts davon ist selbst gebaut. Die Krypto kommt aus libsignal (PQXDH, Double Ratchet) und OpenMLS (Gruppen), beide als geprüfter Rust-Code, geteilt über alle Clients.
 
 ## Schlüssel pro Nutzer, pro Gerät
 
@@ -22,7 +22,7 @@ libsignal bringt dazu inzwischen einen post-quantum Ratchet mit (SPQR, von Signa
 
 Für Gruppen nehmen wir MLS (RFC 9420) über OpenMLS. Der Kern ist ein Schlüsselbaum (TreeKEM): Tritt jemand bei oder geht, reicht ein Update entlang eines Astes, statt dass jeder mit jedem neu verhandelt. Der Aufwand wächst logarithmisch mit der Gruppengröße. Genau hier scheitern ältere Ansätze: Das Sender-Keys-Modell (WhatsApp, Signal-Gruppen) und Matrix' Megolm werden bei großen, aktiven Gruppen teuer oder schwach in der Post-Compromise-Eigenschaft. MLS ist dafür gebaut.
 
-Ein ehrlicher Haken: MLS ist in den Standard-Suites von RFC 9420 klassisch. Unsere Gruppen sind damit aktuell nicht post-quantum. PQ-MLS läuft über einen IETF-Draft (Combiner) und ist noch nicht fertig. Das steht auf der [roadmap.md](roadmap.md) und in [offene-fragen.md](offene-fragen.md).
+Ein Haken bleibt: MLS ist in den Standard-Suites von RFC 9420 klassisch. Unsere Gruppen sind damit aktuell nicht post-quantum. PQ-MLS läuft über einen IETF-Draft (Combiner) und ist noch nicht fertig. Das steht auf der [roadmap.md](roadmap.md) und in [offene-fragen.md](offene-fragen.md).
 
 ## Mehrere Geräte
 

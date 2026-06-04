@@ -14,4 +14,4 @@ Der Sitzungsaufbau läuft über PQXDH, hybrid aus X25519 und ML-KEM-768. Die lau
 
 1:1 ist damit post-quantum, mit Forward Secrecy und Post-Compromise Security. Die Echtheits-Frage beim Schlüsselaustausch ist über Key Transparency abgedeckt, nicht dem Nutzer allein aufgebürdet.
 
-Ein ehrlicher Haken bleibt: Gruppen sind über MLS noch klassisch, weil die PQ-Variante (Combiner) erst als IETF-Draft existiert. Gruppen-Chiffretext von heute ist also gegen einen späteren Quantencomputer nicht sicher. Das ziehen wir nach, sobald der Draft steht, und es ist bis dahin offen ausgewiesen.
+Ein Haken bleibt: Gruppen sind über MLS noch klassisch, weil die PQ-Variante (Combiner) erst als IETF-Draft existiert. Gruppen-Chiffretext von heute ist also gegen einen späteren Quantencomputer nicht sicher. Das ziehen wir nach, sobald der Draft steht, und es ist bis dahin offen ausgewiesen.

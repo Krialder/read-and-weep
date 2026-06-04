@@ -1,10 +1,16 @@
 # Offene Fragen
 
-Was noch nicht entschieden ist. Die Liste ist bewusst lang und ehrlich. Wenn hier etwas steht, heißt das, wir wissen es noch nicht, und das ist in dieser Phase in Ordnung. Jeder Punkt sollte fallen, bevor das zugehörige Stück gebaut wird.
+Was noch nicht entschieden ist. Die Liste ist bewusst lang. Wenn hier etwas steht, heißt das, wir wissen es noch nicht, und das ist in dieser Phase in Ordnung. Jeder Punkt sollte fallen, bevor das zugehörige Stück gebaut wird.
+
+## Entschieden (2026-06-04)
+
+- MLS-Suite: ChaCha20-Poly1305 (0x0003), für einen einheitlichen symmetrischen Stack.
+- Key-Transparency-Auditor: Selbstprüfung im Client ab Phase 1, unabhängiger Auditor ab Phase 3. Wer ihn betreibt, bleibt offen (unten).
+- Backup: Secure Value Recovery ist eingeplant, kommt nach Phase 1. Bis dahin nur Recovery-Key.
+- Sybil-Widerstand: Proof-of-Work plus Privacy Pass. Feintuning unten.
 
 ## Krypto-Kern
 
-- AES-128-GCM gegen ChaCha20-Poly1305 als MLS-Suite. Standard-Kompatibilität gegen einen einheitlichen symmetrischen Stack.
 - Zeitpunkt für PQ-MLS. Hängt am Combiner-Draft und an OpenMLS. Bis dahin sind Gruppen klassisch.
 - Genaues Wire-Format der Versionsaushandlung und der Suite-IDs.
 - Stichtags-Mechanik für erzwungene Re-Handshakes bei einem Suite-Wechsel.
@@ -13,7 +19,7 @@ Was noch nicht entschieden ist. Die Liste ist bewusst lang und ehrlich. Wenn hie
 
 ## Key Transparency
 
-- Wer betreibt die Auditoren. Selbst, Konsortium, oder Dritte. Ohne unabhängige Instanz ist der Split-View-Schutz schwächer.
+- Wer betreibt den unabhängigen Auditor (ab Phase 3): wir, ein Konsortium, oder Dritte. Ohne unabhängige Instanz ist der Split-View-Schutz schwächer.
 - Transport fürs Gossip, in-band über Clients oder out-of-band.
 - Epochenlänge. Kürzer heißt schnellere Sichtbarkeit, aber mehr Last.
 - Wie ein frischer Client dem Signaturschlüssel der Wurzeln vertraut (Bootstrapping).
@@ -23,7 +29,7 @@ Was noch nicht entschieden ist. Die Liste ist bewusst lang und ehrlich. Wenn hie
 
 ## Sealed Sender und Abuse
 
-- Sybil-Widerstand bei der Registrierung. Proof-of-Work, Privacy Pass, Invite, oder eine Mischung. Das ist die wichtigste offene Produktfrage.
+- Feintuning des Sybil-Schutzes: PoW-Härte und woran die Privacy-Pass-Ausgabe selbst hängt. Dass es PoW plus Privacy Pass wird, ist entschieden.
 - Lebensdauer und Rotation der Sender-Certificates.
 - Schlüsselverwaltung fürs Franking und das Commitment-Schema.
 - Laufen Erstkontakte grundsätzlich in eine Anfrage-Inbox.
@@ -32,7 +38,7 @@ Was noch nicht entschieden ist. Die Liste ist bewusst lang und ehrlich. Wenn hie
 ## Identität, Geräte, Recovery
 
 - Protokoll fürs Geräte-zu-Geräte-Übertragen des Verlaufs an ein neues Gerät.
-- Secure Value Recovery ja oder nein. Ohne wird die Retention schlecht, mit ist es ein eigenes Großthema (Enclaves, PIN, hartes Rate-Limit). Das ist eine der größten offenen Entscheidungen.
+- SVR-Details: Enclave-Wahl, PIN-Flow, Rate-Limit-Parameter. Dass SVR kommt, ist entschieden, es kommt nach Phase 1.
 - Was passiert mit Gruppen, wenn ein Nutzer alle Geräte verliert.
 
 ## Betrieb und Skalierung

@@ -14,4 +14,4 @@ Wir bauen einen zentralen Kern und benennen Identitäten intern als `handle@home
 
 Der Betrieb bleibt am Anfang beherrschbar, und der Metadatenschutz ist so stark, wie er nur bei einem Betreiber sein kann.
 
-Ehrlich zur Reichweite dieser Vorbereitung: Sie de-riskt die Benennung, mehr nicht. Echte Föderation ist keine Erweiterung, sondern eine andere Vertrauenstopologie. Sie braucht serverübergreifende Key Transparency, ein Server-Discovery-Protokoll, S2S-Authentifizierung, und sie weicht den Metadatenschutz auf. Der frühere Eindruck, das wäre später "nur ein Schalter", stimmt nicht. Deshalb bleibt Föderation eine bewusste Option für später und ist standardmäßig aus.
+Zur Reichweite dieser Vorbereitung: Sie de-riskt die Benennung, mehr nicht. Echte Föderation ist keine Erweiterung, sondern eine andere Vertrauenstopologie. Sie braucht serverübergreifende Key Transparency, ein Server-Discovery-Protokoll, S2S-Authentifizierung, und sie weicht den Metadatenschutz auf. Der frühere Eindruck, das wäre später "nur ein Schalter", stimmt nicht. Deshalb bleibt Föderation eine bewusste Option für später und ist standardmäßig aus.

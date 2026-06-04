@@ -29,7 +29,9 @@ Ohne Telefonnummer als Anker fällt die natürliche Bremse gegen Massenkonten we
 
 ### Sybil-Widerstand bei der Registrierung
 
-Das Ziel ist, einem Angreifer das Anlegen von zehntausend Konten teuer zu machen, ohne echte Nutzer zu nerven oder zu deanonymisieren. Kandidaten: Proof-of-Work bei der Registrierung, anonyme Credentials beziehungsweise Privacy Pass für rate-limitierte Tokens, Einladungs- oder Reputationssysteme. Welche Mischung, ist eine Produktentscheidung und noch offen.
+Das Ziel ist, einem Angreifer das Anlegen von zehntausend Konten teuer zu machen, ohne echte Nutzer zu nerven oder zu deanonymisieren. Entschieden: eine Kombination aus Proof-of-Work bei der Registrierung und Privacy Pass für rate-limitierte, anonyme Tokens auf den teuren Aktionen danach.
+
+Das ist eine Bremse, kein Riegel, und die Grenzen muss man mitdenken. Proof-of-Work trifft schwache Geräte härter als eine Server-Farm oder ein Botnetz, die Asymmetrie ist also begrenzt. Privacy Pass braucht selbst ein Tor, an dem die Tokens ausgegeben werden, sonst verschiebt sich das Sybil-Problem nur dorthin. Und weil Sealed Sender den Server für den Absender blind macht, fällt die serverseitige Spam-Filterung nach Absender weg. Deshalb steht dieser Baustein nicht allein. Er wirkt zusammen mit Message Franking und den empfängerseitigen Kontrollen weiter unten.
 
 ### Message Franking
 
@@ -45,7 +47,7 @@ Signal hat Sealed Sender 2018 eingeführt und mehrfach über die Abuse-Folgen ge
 
 ## Offen
 
-- Konkreter Sybil-Widerstand bei der Registrierung (PoW, Privacy Pass, Invite, oder Mischung).
+- Feintuning des Sybil-Schutzes: PoW-Härte und woran die Privacy-Pass-Ausgabe selbst hängt (sonst verschiebt sich das Sybil-Problem nur dorthin).
 - Lebensdauer und Rotation der Sender-Certificates.
 - Schlüsselverwaltung fürs Franking und das genaue Commitment-Schema.
 - Ob Erstkontakte grundsätzlich in eine Anfrage-Inbox laufen.

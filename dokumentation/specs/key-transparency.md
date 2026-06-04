@@ -31,7 +31,7 @@ Jeder Client überwacht seine eigene Schlüsselhistorie. Er weiß, welche Schlü
 
 Bleibt ein Angriff übrig: der split view. Der Server zeigt dir eine Verzeichnis-Version und deinem Kontakt eine andere. Dagegen helfen unabhängige Auditoren (Witnesses), die die Folge der signierten Wurzeln beobachten und auf Append-only und Konsistenz prüfen, plus Gossip: Clients und Auditoren vergleichen die Wurzeln, die sie sehen. Tauchen zwei widersprüchliche Wurzeln zur selben Epoche auf, ist der Betreiber überführt.
 
-Wer die Auditoren betreibt, ist eine Vertrauens- und Betriebsfrage, und sie ist noch offen (siehe unten und [offene-fragen.md](../offene-fragen.md)).
+Für den Start ist entschieden: Die Selbstprüfung im Client läuft ab Phase 1, der unabhängige Auditor kommt in Phase 3. Wer ihn dann betreibt (wir, ein Konsortium, oder Dritte), bleibt offen (siehe [offene-fragen.md](../offene-fragen.md)).
 
 ## Was der Server hält
 
@@ -46,7 +46,7 @@ Der grobe Tabellen-Rahmen dazu steht in [datenmodell.md](../datenmodell.md). Die
 
 Geschlagen: der stille Schlüsseltausch durch den Server, sowohl offen (Selbstprüfung) als auch versteckt über zwei Wahrheiten (Gossip plus Auditoren).
 
-Nicht geschlagen: Ein Erstkontakt bleibt ein Vertrauen-beim-ersten-Sehen, bis genug Epochen und Audits vergangen sind. Und KT sagt dir, dass ein Schlüssel echt im Verzeichnis steht, nicht, ob die Person dahinter die ist, für die du sie hältst. Dafür gibt es zusätzlich die Safety Number zum manuellen Abgleich.
+Nicht geschlagen: Ein Erstkontakt bleibt ein Vertrauen-beim-ersten-Sehen, bis genug Epochen und Audits vergangen sind. Und KT sagt dir, dass ein Schlüssel tatsächlich im Verzeichnis steht, nicht, ob die Person dahinter die ist, für die du sie hältst. Dafür gibt es zusätzlich die Safety Number zum manuellen Abgleich.
 
 ## Offen
 

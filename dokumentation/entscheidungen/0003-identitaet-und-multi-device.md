@@ -4,7 +4,7 @@
 
 ## Kontext
 
-Viele Messenger hängen die Identität an die Telefonnummer. Das macht das Onboarding bequem, kostet aber Privatsphäre: Die Nummer ist ein echter Personenbezug, und der Adressbuchabgleich legt den sozialen Graphen offen. Gleichzeitig erwarten Leute, dasselbe Konto auf mehreren Geräten zu haben.
+Viele Messenger hängen die Identität an die Telefonnummer. Das macht das Onboarding bequem, kostet aber Privatsphäre: Die Nummer ist ein direkter Personenbezug, und der Adressbuchabgleich legt den sozialen Graphen offen. Gleichzeitig erwarten Leute, dasselbe Konto auf mehreren Geräten zu haben.
 
 ## Entscheidung
 
