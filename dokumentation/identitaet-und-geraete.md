@@ -12,7 +12,7 @@ Die Kontaktsuche löst ein Handle zu einem Konto auf, ohne dass der Server ein A
 
 ## Mehrere Geräte
 
-Ein Konto darf mehrere Geräte haben, jedes mit eigenen Schlüsseln. Ein neues Gerät kommt nicht von allein rein: Ein schon eingerichtetes muss es freischalten, per QR-Code oder Bestätigung. Erst danach zählt es als vertrauenswürdiges Mitglied des Kontos und taucht im Verzeichnis auf.
+Ein Konto darf mehrere Geräte haben, jedes mit eigenen Schlüsseln. Ein neues Gerät kommt nicht von allein rein: Ein schon eingerichtetes muss es freischalten, per QR-Code oder Bestätigung. Erst danach zählt es als vertrauenswürdiges Mitglied des Kontos und taucht im Verzeichnis auf. Wie die Geräteschlüssel an den Konto-Identitätsschlüssel gebunden sind und wie das in Key Transparency sichtbar wird, steht in [specs/geraete-identitaet.md](specs/geraete-identitaet.md).
 
 Den bisherigen Verlauf zieht sich das neue Gerät verschlüsselt vom alten, der Server reicht dabei keinen Klartext durch. Wie genau dieser Geräte-zu-Geräte-Transfer abläuft, ist noch nicht festgezurrt (siehe [offene-fragen.md](offene-fragen.md)). Wird ein Gerät entfernt, etwa weil es verloren ging, werden seine Sitzungen ungültig, und alle Gruppen, in denen es war, schlüsseln über MLS neu. Ab dem Schnitt liest es nichts mehr mit, auch nicht rückwirkend.
 
@@ -26,4 +26,4 @@ Im Alltag prüft der Client jeden ausgelieferten Schlüssel gegen ein öffentlic
 
 Zwei Dinge gehören getrennt gehalten. Der Login ist wiederherstellbar, etwa über die hinterlegte E-Mail und einen zweiten Faktor. Der lokale Klartext hängt am Recovery-Key oder an der Passphrase. Geht beides verloren, kommt man zwar wieder ins Konto, der alte verschlüsselte Verlauf bleibt aber zu.
 
-Das ist die unbequeme Variante, und in der Praxis verlieren damit viele Nutzer ihre History. Deshalb ist eine bequemere Lösung eingeplant: Secure Value Recovery nach dem Vorbild von Signal (SVR2 und SVR3, ein PIN entsperrt einen Schlüssel in einer abgesicherten Enclave, mit hartem Rate-Limit gegen Raten). SVR kommt erst nach Phase 1. Vorher gilt: Recovery-Key sichern, sonst ist der Verlauf weg.
+Das ist die unbequeme Variante, und in der Praxis verlieren damit viele Nutzer ihre History. Deshalb ist eine bequemere Lösung eingeplant: Secure Value Recovery nach dem Vorbild von Signal (SVR2 und SVR3, ein PIN entsperrt einen Schlüssel in einer abgesicherten Enclave, mit hartem Rate-Limit gegen Raten). SVR kommt erst nach Phase 1, die Skizze steht in [specs/backup-und-recovery.md](specs/backup-und-recovery.md). Vorher gilt: Recovery-Key sichern, sonst ist der Verlauf weg.

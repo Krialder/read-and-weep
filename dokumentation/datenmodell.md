@@ -87,7 +87,7 @@ CREATE TABLE group_devices (
 );
 ```
 
-Der kryptografische Gruppenzustand (wer Mitglied ist, welche Schlüssel gelten) lebt als TreeKEM-Zustand in den Clients, nicht hier.
+Der kryptografische Gruppenzustand (wer Mitglied ist, welche Schlüssel gelten) lebt als TreeKEM-Zustand in den Clients. Der Server hält ihn nicht.
 
 ## Was auf dem Gerät bleibt
 

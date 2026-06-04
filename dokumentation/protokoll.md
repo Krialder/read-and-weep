@@ -6,7 +6,7 @@ Hier steht, wie aus "der Server sieht nichts" konkrete Technik wird, im Überbli
 
 Jeder Nutzer hat einen langlebigen Identitätsschlüssel, Ed25519 zum Signieren mit einem X25519-Anteil für den Austausch. Der ist die Wurzel der Identität und liegt nur auf dem Gerät, nie im Klartext woanders.
 
-Ein Konto besteht aus mehreren Geräten, jedes mit eigenen Schlüsseln. Jedes lädt einen Vorrat an Prekeys ins Verzeichnis: einen signierten und viele Einmal-Prekeys, klassisch und post-quantum. Damit kann dir jemand eine erste Nachricht schicken, während dein Handy offline in der Tasche steckt.
+Ein Konto besteht aus mehreren Geräten, jedes mit eigenen Schlüsseln, die über ein vom Konto-Identitätsschlüssel signiertes Credential ans Konto gebunden sind (Details in [specs/geraete-identitaet.md](specs/geraete-identitaet.md)). Jedes lädt einen Vorrat an Prekeys ins Verzeichnis: einen signierten und viele Einmal-Prekeys, klassisch und post-quantum. Damit kann dir jemand eine erste Nachricht schicken, während dein Handy offline in der Tasche steckt.
 
 ## Sitzungsaufbau mit PQXDH
 

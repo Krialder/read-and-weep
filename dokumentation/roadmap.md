@@ -8,12 +8,15 @@ Sortiert nach Abhängigkeiten, ohne Termine. Zwei Aspekte, auf die bei der Planu
 - [x] Key-Transparency-Modell entworfen, siehe [specs/key-transparency.md](specs/key-transparency.md)
 - [x] Sealed Sender und Abuse entworfen, siehe [specs/sealed-sender-und-abuse.md](specs/sealed-sender-und-abuse.md)
 - [x] Krypto-Kern (PQXDH-Bindung, MLS-Suite, Versionierung), siehe [specs/krypto-kern.md](specs/krypto-kern.md)
+- [x] Geräte-Identitätsbindung entworfen, siehe [specs/geraete-identitaet.md](specs/geraete-identitaet.md)
+- [x] Backup/Recovery-Skizze (SVR), siehe [specs/backup-und-recovery.md](specs/backup-und-recovery.md)
 - [ ] Offene Entscheidungen aus [offene-fragen.md](offene-fragen.md) abarbeiten, bevor das jeweilige Stück gebaut wird
 
 ## Phase 1: Fundament
 
 - [ ] Identität und Auth: Konten mit Handle, Login, rotierende Sessions
 - [ ] Geräteverwaltung: erstes Gerät, weitere per Freischaltung, Entfernen mit Neuschlüsseln
+- [ ] Geräte-Identitätsbindung: Konto-Identitätsschlüssel signiert die Geräte-Credentials, sichtbar in KT (siehe [specs/geraete-identitaet.md](specs/geraete-identitaet.md))
 - [ ] Schlüssel-Verzeichnis mit Prekey-Vorrat (klassisch und post-quantum)
 - [ ] Key-Transparency-Grundgerüst: Epochen, Merkle-Map, Selbstprüfung im Client
 - [ ] Web-Client und ein nativer Client parallel, beide registrieren sich und veröffentlichen Schlüssel
@@ -24,6 +27,7 @@ Sortiert nach Abhängigkeiten, ohne Termine. Zwei Aspekte, auf die bei der Planu
 - [ ] Double Ratchet plus SPQR
 - [ ] Senden und Empfangen, Zustellstatus, Echtzeit-Push, idempotente Zustellung
 - [ ] Multi-Device-Fanout, eigene Zweitgeräte bleiben synchron
+- [ ] Strukturiertes Threat Model (LINDDUN) und ein formales Handshake-Modell-Skelett (ProVerif oder Tamarin), parallel zum Kern
 - [ ] Erstes externes Audit des Krypto-Kerns
 
 ## Phase 3: Metadaten, Verifikation, Abuse
@@ -42,13 +46,13 @@ Sortiert nach Abhängigkeiten, ohne Termine. Zwei Aspekte, auf die bei der Planu
 ## Phase 5: Medien und Anrufe
 
 - [ ] Verschlüsselter Dateiversand über den Medien-Dienst
-- [ ] Anrufe als eigenes Subprojekt: SFrame, MLS-basiertes Group-Calling, DTLS-SRTP, Identitätsbindung der Call-Schlüssel. Vom Aufwand her in der Größe von Phase 2.
+- [ ] Anrufe als eigenes Subprojekt: SFrame, MLS-basiertes Group-Calling, DTLS-SRTP, Identitätsbindung der Call-Schlüssel. Vom Aufwand her in der Größe von Phase 2. Der MLS-Exporter ist im Krypto-Kern dafür reserviert.
 
 ## Phase 6: Härtung
 
 - [ ] PQ-MLS, sobald der Combiner-Draft stabil und in OpenMLS ist
 - [ ] Krypto-Agilität und Wire-Versionierung gehärtet
-- [ ] Formale Modelle der Handshakes (ProVerif oder Tamarin), Fuzzing, Property-Tests für den Krypto-Code
+- [ ] Formale Modelle vervollständigen, Fuzzing, Property-Tests für den Krypto-Code
 - [ ] Lasttests auf den heißen Pfaden
 - [ ] Zweites externes Audit vor Launch
 

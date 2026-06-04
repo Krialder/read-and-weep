@@ -35,11 +35,15 @@ Das ist eine Bremse, kein Riegel, und die Grenzen muss man mitdenken. Proof-of-W
 
 ### Message Franking
 
-Sealed Sender macht Meldungen schwer: Wenn der Server den Absender nicht kennt, wie soll ein Empfänger eine missbräuchliche Nachricht beweisbar melden, ohne dass sich Meldungen fälschen lassen? Die Antwort ist kryptografisches Franking, wie es Facebook Messenger eingeführt hat. Der Absender hängt ein Franking-Tag an, der Server committet sich beim Transport darauf, ohne den Inhalt zu sehen. Meldet der Empfänger die Nachricht, deckt er den Tag auf, und der Server kann verifizieren, dass genau diese Nachricht so gesendet wurde. Kein Fälschen, kein Bruch der E2E.
+Sealed Sender macht Meldungen schwer: Wenn der Server den Absender nicht kennt, wie soll ein Empfänger eine missbräuchliche Nachricht beweisbar melden, ohne dass sich Meldungen fälschen lassen? Die Antwort ist kryptografisches Franking, wie es Facebook Messenger eingeführt hat. Der Absender hängt ein Franking-Tag an, der Server committet sich beim Transport darauf, ohne den Inhalt zu sehen. Meldet der Empfänger die Nachricht, deckt er den Tag auf, und der Server kann verifizieren, dass genau diese Nachricht so gesendet wurde. Niemand kann eine Meldung fälschen, und die E2E bleibt unberührt.
 
 ### Empfängerseitige Kontrollen
 
 Blockieren, "wer darf mir schreiben", Anfrage-Inbox für Erstkontakte, Rate-Limits pro Empfänger. Das ist die letzte und wichtigste Verteidigungslinie, weil sie beim Nutzer liegt und nicht auf Server-Einsicht angewiesen ist.
+
+## Lieferbestätigungen
+
+Quittungen (zugestellt, gelesen) sind in einer Sealed-Sender-Welt ein eigenes kleines Problem: Der Server kennt den Absender nicht, an wen also zurückmelden? Die Antwort ist, die Quittung als eigene Sealed-Sender-Nachricht zurück an den ursprünglichen Absender zu schicken. Dessen Identität hat der Empfänger aus dem Sender-Certificate gelernt, er kann ihm also antworten, ohne dass der Server die Richtung erfährt. Die Quittung läuft damit über denselben Kanal rückwärts. Offen bleibt, wie aufdringlich Lesebestätigungen per Default sein sollen.
 
 ## Vorbilder
 

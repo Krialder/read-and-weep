@@ -6,7 +6,7 @@ Ohne eine Antwort darauf ist jede E2E-Verschlüsselung gegen einen aktiven, bös
 
 ## Die Idee
 
-Der Server führt alle Schlüssel in einem öffentlich nachprüfbaren, nur-anhängbaren Verzeichnis. Technisch ist das eine verifiable map (Label zu Wert) auf Basis eines Merkle-Baums, deren Wurzel der Server regelmäßig signiert veröffentlicht. Jeder kann zu einem Handle einen Beweis verlangen, dass der ausgelieferte Schlüssel genau der ist, der im Verzeichnis steht. Der Server kann also nicht zwei Wahrheiten fahren, ohne dass es auffällt.
+Der Server führt alle Schlüssel in einem öffentlich nachprüfbaren Verzeichnis. Technisch ist das eine verifiable map (Label zu Wert) auf einem Merkle-Baum, gestützt auf einen append-only Log der signierten Wurzeln. Die Map selbst ist veränderlich, ein Schlüsselwechsel ändert einen Eintrag. Der Log darüber wird nur angehängt. Die Wurzel veröffentlicht der Server regelmäßig signiert. Jeder kann zu einem Handle einen Beweis verlangen, dass der ausgelieferte Schlüssel genau der ist, der im Verzeichnis steht. Der Server kann also nicht zwei Wahrheiten fahren, ohne dass es auffällt.
 
 Das Modell folgt der Linie von CONIKS und den späteren Systemen (Google Key Transparency, Metas KT für WhatsApp 2023 und Messenger 2025, Keybase). Wir erfinden hier nichts, wir setzen ein bekanntes Design um.
 
@@ -20,7 +20,7 @@ Deshalb läuft das Label nicht über den Klartext-Handle, sondern über eine VRF
 
 Das Verzeichnis arbeitet in Epochen. Am Ende jeder Epoche veröffentlicht der Server eine signierte Wurzel (signed tree head, STH) mit Epochennummer und Zeitstempel. Zwei Eigenschaften müssen über die Epochen hinweg beweisbar sein:
 
-1. Append-only. Eine neue Wurzel enthält alles aus der alten. Der Server kann keine Historie umschreiben, nur anhängen.
+1. Append-only, richtig verstanden. Nicht die Map ist unveränderlich, sondern ihre Historie: die Folge der signierten Wurzeln und, pro Label, die Versionskette der Werte. Der Server kann Vergangenes nicht umschreiben, nur neue Versionen anhängen. So lösen es CONIKS, Google KT und Meta KT, ein Transparency-Log über einer veränderlichen Map.
 2. Konsistenz. Zwischen zwei Wurzeln gibt es einen Konsistenzbeweis, der zeigt, dass die neue aus der alten hervorgegangen ist.
 
 ## Selbstprüfung durch den Client
@@ -38,7 +38,7 @@ Für den Start ist entschieden: Die Selbstprüfung im Client läuft ab Phase 1, 
 - Den Merkle-Baum der verifiable map (Label zu Schlüssel-Commitment).
 - Die Folge der signierten Wurzeln pro Epoche.
 - Den VRF-Schlüssel (privat) und den Signaturschlüssel für die Wurzeln.
-- Pro Konto die aktuelle Geräte- und Schlüsselmenge, auf die das Commitment zeigt.
+- Pro Konto die aktuelle Geräte- und Schlüsselmenge, auf die das Commitment zeigt. Wie die Geräte an den Konto-Identitätsschlüssel gebunden sind, steht in [geraete-identitaet.md](geraete-identitaet.md).
 
 Der grobe Tabellen-Rahmen dazu steht in [datenmodell.md](../datenmodell.md). Die genaue Merkle-Bauart (Sparse Merkle Tree, Indexierung, Commitment-Schema) zurren wir gegen eine konkrete Bibliothek fest, bevor sich das Datenmodell zementiert.
 

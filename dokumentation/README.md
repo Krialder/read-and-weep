@@ -2,7 +2,7 @@
 
 Verschlüsselte Kommunikation, die heute hält und auch dann noch, wenn in ein paar Jahren die ersten Quantencomputer ernst werden. Ein Konto über Web, Mobile und Desktop. Der Server bekommt nur Chiffretext zu sehen, die Schlüssel bleiben beim Nutzer.
 
-Diese Doku ist eine Übersicht plus die paar Specs, an denen so ein System wirklich steht oder fällt. Was noch nicht entschieden ist, hängt sichtbar in [offene-fragen.md](offene-fragen.md). Das ist Absicht, kein Versäumnis.
+Diese Doku ist eine Übersicht plus die paar Specs, an denen so ein System wirklich steht oder fällt. Was noch nicht entschieden ist, hängt sichtbar in [offene-fragen.md](offene-fragen.md). Das ist Absicht.
 
 ## Die Grundentscheidungen
 
@@ -33,7 +33,7 @@ Diese Doku ist eine Übersicht plus die paar Specs, an denen so ein System wirkl
 | [betrieb.md](betrieb.md) | Deployment, Skalierung, die teuren Pfade |
 | [roadmap.md](roadmap.md) | Reihenfolge, mit einer Spec-Phase vor dem Code |
 | [offene-fragen.md](offene-fragen.md) | Was noch nicht entschieden ist |
-| [specs/](specs/) | Key Transparency, Sealed Sender und Abuse, Krypto-Kern |
+| [specs/](specs/) | Key Transparency, Sealed Sender und Abuse, Krypto-Kern, Geräte-Identitätsbindung, Backup und Recovery |
 | [entscheidungen/](entscheidungen/) | Die ADRs zu den großen Festlegungen |
 
 ## Stand

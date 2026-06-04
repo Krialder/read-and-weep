@@ -22,7 +22,13 @@ Die genauen Byte-Layouts, Labels und der `F`-Präfix übernehmen wir 1:1 aus der
 
 ## Double Ratchet und SPQR
 
-Die laufende 1:1-Sitzung fährt den Double Ratchet. Der Nachrichtenschlüssel zieht seine Sicherheit aus der DH-Kette plus der symmetrischen Kette. libsignal ergänzt das um SPQR, einen parallelen post-quantum Ratchet. Der Nachrichtenschlüssel mischt dann beide Anteile, klassisch und PQ. Damit ist die fortlaufende Sitzung quantenfest und nicht nur der Aufbau.
+Die laufende 1:1-Sitzung fährt den Double Ratchet. Der Nachrichtenschlüssel zieht seine Sicherheit aus der DH-Kette plus der symmetrischen Kette. libsignal ergänzt das um SPQR, einen parallelen post-quantum Ratchet, und der Nachrichtenschlüssel mischt beide Anteile, klassisch und PQ.
+
+Die Mischung ist so bindungskritisch wie bei PQXDH. Beide Chain-Key-Anteile gehen gemeinsam in die KDF, keiner darf strippbar sein, sonst fällt man auf die klassische Sicherheit zurück. Das genaue Schema (Konkatenation vor der KDF, Domain-Separation) übernehmen wir aus libsignal und pinnen es an die SPQR-Version, die wir einsetzen. Damit wird die fortlaufende Sitzung quantenfest, vom Aufbau bis zur letzten Nachricht.
+
+## Out-of-Order und Replays
+
+Der Ratchet toleriert Nachrichten, die in falscher Reihenfolge ankommen, über ein Fenster zwischengespeicherter Message-Keys. Dieses Fenster braucht harte Grenzen: eine maximale Zahl übersprungener Keys, ein Aging und ein Speicherlimit pro Sitzung. Ohne die Grenzen wird daraus ein Speicher-DoS. Die konkreten Werte stehen in den offenen Punkten.
 
 ## MLS-Cipher-Suite
 
@@ -36,6 +42,8 @@ Damit ist der symmetrische Teil über die ganze Plattform einheitlich (ChaCha20-
 
 Wichtig: Diese Suite ist klassisch. Gruppen sind damit nicht post-quantum. Ein PQ-Pfad für MLS existiert nur als IETF-Draft (der Combiner, `draft-ietf-mls-combiner`, der einen klassischen und einen PQ-KEM in TreeKEM kombiniert). Sobald das stabil ist und in OpenMLS landet, ziehen wir nach. Bis dahin gilt für Gruppen: Forward Secrecy und Post-Compromise Security ja, Post-Quantum nein.
 
+Ein zweiter Punkt zu Post-Quantum, der leicht untergeht: Selbst wenn der KEM-Teil per Combiner post-quantum wird, bleibt die Signaturschicht (Ed25519 für Credentials und Handshakes) klassisch, bis PQ-Signaturen wie ML-DSA in die Suites kommen. Betroffen ist die Authentizität, die Vertraulichkeit bleibt geschützt. Das ist weniger dringend, weil sich eine Signatur nicht rückwirkend wertvoll fälschen lässt, sie zählt erst, wenn ein Quantencomputer real existiert. Auf dem Schirm haben wir es.
+
 ## Krypto-Agilität und Wire-Versionierung
 
 Das ist die Frage, an der die meisten Projekte scheitern: Wie kommt man von Suite v1 auf v2, ohne dass alte Nachrichten unlesbar werden oder ein Angreifer ein Downgrade erzwingt?
@@ -47,6 +55,10 @@ Unser Ansatz:
 3. Downgrade-Schutz: Die ausgehandelte Version wird in den Transkript-Hash des Handshakes gebunden. Ein MITM, der eine schwächere Suite erzwingen will, zerstört damit den Handshake.
 4. Migration: Neue Sitzungen nehmen die neue Suite. Bestehende laufen auf ihrer Suite weiter, bis sie natürlich enden oder an einem Stichtag zum Neu-Handshake gezwungen werden. Server dürfen eine alte Suite erst abschalten, wenn die Clients migriert sind, sonst werden In-flight-Nachrichten unlesbar.
 
+## Reserviert für Anrufe
+
+Verschlüsselte Anrufe (Phase 5) leiten ihre Medienschlüssel später aus dem MLS-Exporter ab, statt eigene Sitzungen aufzubauen. Das ist hier nur eine Notiz, keine Spec. Wichtig ist, dass die Exporter-Schnittstelle und die Suite-Bindung schon jetzt so bleiben, dass eine spätere Call-Schicht (SFrame über DTLS-SRTP) darauf aufsetzen kann.
+
 ## Zufall und Nonces
 
 Schlüssel und Nonces kommen ausschließlich aus dem CSPRNG der Bibliothek. Nonce-Wiederverwendung ist bei AEAD tödlich und wird durch die Library-Nutzung vermieden, nicht durch eigenen Code.
@@ -57,3 +69,5 @@ Schlüssel und Nonces kommen ausschließlich aus dem CSPRNG der Bibliothek. Nonc
 - Genaues Wire-Format der Versionsaushandlung und der Suite-IDs.
 - Stichtags-Mechanik für erzwungene Re-Handshakes.
 - Wie SPQR-Versionen in unsere Wire-Version eingehängt werden.
+- Konkrete Grenzen des Skipped-Keys-Fensters: maximale Zahl übersprungener Keys, Aging, Speicherlimit pro Sitzung.
+- PQ-Signaturen (ML-DSA oder SLH-DSA) für die MLS-Authentizität, als zweite Welle nach dem KEM-Combiner.
